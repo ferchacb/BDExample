@@ -1,12 +1,17 @@
-import os
+import sys
 
+sys.path.append('/usr/local/lib/python3.6/site-packages')
+
+import os
 import inline as inline
 import matplotlib as matplotlib
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
-import cv2
+import cv2  #No se reconoce libreria
 import matplotlib.pyplot as plt
-%matplotlib inline
+import matplotlib.cm as cm
+from IPython import get_ipython
+get_ipython().run_line_magic('matplotlib', 'inline')
 from sklearn.model_selection import train_test_split
 
 
@@ -140,10 +145,7 @@ hist = model.fit_generator(my_generator(x_train, y_train, 8),
                            callbacks = [weight_saver, annealer])
 
 
-
 model.load_weights('lung.h5')
-
-
 
 
 plt.plot(hist.history['loss'], color='b')
@@ -155,11 +157,7 @@ plt.show()
 
 
 
-
-
 plt.imshow(model.predict(x_train[0].reshape(1,IMG_HEIGHT, IMG_WIDTH, 1))[0,:,:,0], cmap='gray')
-
-
 
 
 
